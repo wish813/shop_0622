@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mapper가 여러개 일때 namespace 로 구분한다. -->
+<mapper namespace="shop">
+	<select id="list" parameterType="String" resultType="com.ict.db.VO">
+		select * from shop_t where category = #{category}
+	</select>
+	
+	<select id="clist" parameterType="String" resultType="com.ict.db.CVO">
+		select * from cart where u_idx = #{u_idx}
+	</select>
+	
+	<select id="onelist" parameterType="String" resultType="com.ict.db.VO">
+		select * from shop_t where idx = #{idx}
+	</select>
+	
+	<select id="oneslist" parameterType="String" resultType="com.ict.db.VO">
+		select * from shop_t where idx = #{s_idx}
+	</select>
+	
+	<select id="login" parameterType="com.ict.db.MVO" resultType="com.ict.db.MVO">
+		select * from members where id=#{id} and pw=#{pw}
+	</select>
+	
+	<insert id="product_add" parameterType="com.ict.db.VO" >
+		insert into shop_t values(shop_seq.nextval,#{category}, #{p_num}, #{p_name},
+		#{p_company}, #{p_price}, #{p_saleprice}, #{p_image_s}, #{p_image_l}, #{p_content}, sysdate)
+	</insert>
+	
+	<insert id="cart" parameterType="com.ict.db.CVO">
+		insert into cart values(cart_update.nextval, #{u_idx}, #{s_idx}, 1,0)
+	</insert>
+	
+	<update id="updateCount" parameterType="com.ict.db.CVO">
+		update cart set count = count+1 where s_idx=#{s_idx} and u_idx=#{u_idx}
+	</update>
+	
+	<select id="cartList" parameterType="String" resultType="com.ict.db.CVO">
+		select * from cart where u_idx = #{u_idx}
+	</select>
+	
+	<update id="cupdate" parameterType="com.ict.db.CVO">
+		update cart set count = #{count} where s_idx=#{s_idx} and u_idx=#{u_idx}
+	</update>
+	
+	<delete id="cdelete" parameterType="com.ict.db.CVO">
+		delete from  cart where u_idx=#{u_idx} and s_idx = #{s_idx}
+	</delete>
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
