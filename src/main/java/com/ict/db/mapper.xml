@@ -46,7 +46,7 @@
 	</update>
 	
 	<delete id="cdelete" parameterType="com.ict.db.CVO">
-		delete from  cart where u_idx=#{u_idx} and s_idx = #{s_idx}
+		delete from cart where u_idx= #{u_idx} and s_idx = #{s_idx}
 	</delete>
 	
 	

@@ -18,6 +18,7 @@ import com.ict.model.Login_OKcommand;
 import com.ict.model.Logincommand;
 import com.ict.model.OneListcommand;
 import com.ict.model.Product_Addcommand;
+import com.ict.model.Sel_Delcommand;
 import com.ict.model.ShowCartcommand;
 import com.ict.model.command;
 import com.ict.model.deleteCartcommand;
@@ -61,6 +62,8 @@ public class MyController extends HttpServlet {
 			comm = new Product_Addcommand();
 		}else if(cmd.equalsIgnoreCase("chek_cart")){
 			comm = new Chek_Cartcommand();
+		}else if(cmd.equalsIgnoreCase("selectDel")){
+			comm = new Sel_Delcommand();
 		}
 		String path = comm.exec(request, response);
 		request.getRequestDispatcher(path).forward(request, response);

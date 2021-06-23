@@ -16,7 +16,7 @@ public class Login_OKcommand implements command{
 		MVO mvo = DAO.getLogIn(m_vo);
 		
 		if(mvo == null) {
-			return "MyController?cmd=login";
+			return "/MyController?cmd=login";
 		}else {
 			request.getSession().setAttribute("mvo", mvo);
 			request.getSession().setAttribute("login", "ok");
@@ -25,11 +25,11 @@ public class Login_OKcommand implements command{
 			// 관리자는 상품추가가 가능한 페이지로 이동, 일반 유저는 procuct_list.jsp로 이동
 			if(mvo.getId().equals("admin")) {
 				request.getSession().setAttribute("admin", "ok");
-				return "MyController?cmd=admin";
+				return "/MyController?cmd=admin";
 			}
 			
 			
-			return "MyController?cmd=list";
+			return "/MyController?cmd=list";
 		}
 		
 	}
